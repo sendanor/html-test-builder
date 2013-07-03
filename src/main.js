@@ -2,7 +2,16 @@
 /* HTML TestRunner builder */
 
 /* Parse arguments */
-var argv = require('optimist').argv;
+var argv = require('optimist')
+	.usage('USAGE: $0 [--browserify] --jasmine FILE(S)')
+	.alias('b', 'browserify')
+	.alias('j', 'jasmine')
+	.boolean(['b','j'])
+	.default('b', false)
+	.describe('b', 'Use browserify to bundle test files')
+	.describe('j', 'Create Jasmine SpecRunner.html for Yeti')
+	.demand(['j'])
+	.argv;
 
 var opts = {
 	'browserify': argv.browserify ? true : false,
