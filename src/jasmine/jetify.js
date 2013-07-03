@@ -1,7 +1,3 @@
-var window = require('window');
-var BUNYIP = require('BUNYIP');
-var jasmine = require('jasmine');
-
 var jasmineEnv = jasmine.getEnv();
 
 jasmineEnv.addReporter(new jasmine.TrivialReporter());
