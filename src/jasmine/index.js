@@ -5,7 +5,7 @@ var mod = module.exports = {};
 
 /* Write Jasmine test file to output stream */
 mod.build = function(out, opts) {
-	var spec = opts.spec;
+	var includes = opts.includes;
 	var fs = require('fs');
 
 	function embed_style(out, file) {
@@ -47,10 +47,14 @@ mod.build = function(out, opts) {
 	if(opts.browserify) {
 		var browserify = require('browserify');
 		var b = browserify();
-		b.add(spec);
+		for(i=0; i!=includes.length; i+=1) {
+			b.add(includes[i]);
+		}
 		b.bundle({}, do_end).pipe(out);
 	} else {
-		embed_file(out, spec);
+		for(i=0; i!=includes.length; i+=1) {
+			embed_file(out, includes[i]);
+		}
 		do_end();
 	}
 
