@@ -14,7 +14,10 @@
     "optimist": "*",
     "browserify": "*"
   },
-  "author": "",
+  "bin": {
+    "html-test-builder": "bin/main.js"
+  },
+  "author": "Sendanor <info@sendanor.com>",
   "license": "MIT",
   "readmeFilename": "README.md",
   "gitHead": "035fe501ca1b6e317860ce366426bb8a45bead05"
