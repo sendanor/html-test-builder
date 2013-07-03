@@ -12,7 +12,7 @@ if(!argv.spec) {
 }
 
 if(argv.jasmine) {
-	require('./jasmine/index.js').build(process.stdout, argv.spec);
+	require('./jasmine/index.js').build(process.stdout, argv);
 } else {
 	process.stderr.write("ERROR: No --jasmine selected!\n");
 	process.exit(1);

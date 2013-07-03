@@ -4,7 +4,8 @@
 var mod = module.exports = {};
 
 /* Write Jasmine test file to output stream */
-mod.build = function(out, spec) {
+mod.build = function(out, opts) {
+	var spec = opts.spec;
 	var fs = require('fs');
 
 	function embed_style(out, file) {
@@ -31,19 +32,28 @@ mod.build = function(out, spec) {
 		'jasmineEnv.addReporter(new jasmine.HtmlReporter());\n\n'
 	);
 
-	// Build bundle of javascript code
-	if(spec) {
-		embed_file(out, spec);
+	function do_end() {
+		out.write(
+			'\n  if(!("$yetify" in window)) {\n'+
+			'    jasmineEnv.execute();\n'+
+			'  }\n'+
+			'//]]>\n</script>\n'
+		);
+	
+		out.write('</body>\n</html>\n');
 	}
 
-	out.write(
-		'\n  if(!("$yetify" in window)) {\n'+
-		'    jasmineEnv.execute();\n'+
-		'  }\n'+
-		'//]]>\n</script>\n'
-	);
+	// Build bundle of javascript code
+	if(opts.browserify) {
+		var browserify = require('browserify');
+		var b = browserify();
+		b.add(spec);
+		b.bundle({}, do_end).pipe(out);
+	} else {
+		embed_file(out, spec);
+		do_end();
+	}
 
-	out.write('</body>\n</html>\n');
 };
 
 /* */
