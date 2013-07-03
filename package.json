@@ -15,7 +15,7 @@
     "browserify": "*"
   },
   "bin": {
-    "html-test-builder": "bin/main.js"
+    "html-test-builder": "src/main.js"
   },
   "author": "Sendanor <info@sendanor.com>",
   "license": "MIT",
