@@ -19,23 +19,28 @@ var opts = {
 	'includes': []
 };
 
+var path = require('path');
+function add_path(p) {
+	opts.includes.push(path.resolve(p));
+}
+
 if(argv.spec) {
 	if(argv.spec instanceof Array) {
 		for(i=0; i!=argv.spec.length; i+=1) {
-			opts.includes.push(argv.spec[i]);
+			add_path(argv.spec[i]);
 		}
 	} else {
-		opts.includes.push(argv.spec);
+		add_path(argv.spec);
 	}
 }
 
 if(argv._) {
 	if(argv._ instanceof Array) {
 		for(i=0; i!=argv._.length; i+=1) {
-			opts.includes.push(argv._[i]);
+			add_path(argv._[i]);
 		}
 	} else {
-		opts.includes.push(argv._);
+		add_path(argv._);
 	}
 }
 
