@@ -1,7 +1,7 @@
 html-test-builder
 =================
 
-Builds standalone HTML test files for [Jasmine](http://pivotal.github.io/jasmine/) with optional [Browserify](http://browserify.org/) support.
+Builds standalone HTML test files for [Jasmine](https://jasmine.github.io/) with optional [Browserify](http://browserify.org/) support.
 
 Install
 -------
@@ -11,7 +11,7 @@ Install from NPM: `npm install -g html-test-builder`
 Usage
 -----
 
-To build a standalone HTML-test file for [Jasmine](http://pivotal.github.io/jasmine/), just run it like this:
+To build a standalone HTML-test file for [Jasmine](https://jasmine.github.io/), just run it like this:
 
 	html-test-builder --browserify --jasmine spec/*.js > SpecRunner.html
 
